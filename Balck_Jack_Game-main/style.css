@@ -1,0 +1,149 @@
+/* רקע כללי */
+body {
+  margin: 0; padding: 0;
+  background: #0b3d02;
+  display: flex; justify-content: center; align-items: center;
+  height: 100vh;
+  font-family: 'Verdana', sans-serif;
+  color: #f5f5f5;
+}
+
+/* לוח מוטה קלות */
+.con .bord {
+  position: relative;
+  background: #244d23;
+  border: 6px solid #1a3316;
+  border-radius: 16px;
+  padding: 30px 20px;
+  width: 600px; max-width: 90vw;
+  transform: perspective(800px) rotateX(5deg);
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+/* תוויות מעל ידיים */
+.diler::before, .player::before {
+  content: attr(data-label);
+  position: absolute; top: -1.2em;
+  font-size: 1.1rem; font-weight: bold;
+  color: #ffdf00; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+.diler::before { left: 40px; }
+.player::before { right: 40px; }
+
+/* סכום לכל יד */
+.sum {
+  position: absolute;
+  top: 0; right: 0;
+  background: rgba(0,0,0,0.6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+/* ידיים */
+.diler, .player {
+  display: flex; justify-content: center;
+  margin: 1em 0; gap: 10px;
+  border: 2px dashed rgba(255,255,255,0.2);
+  padding: 20px; border-radius: 8px;
+  background: rgba(0,0,0,0.1);
+}
+
+/* קלפים מוטים וקלאס Deal */
+@keyframes deal {
+  0%   { transform: translate(-200px,-200px) rotate(-30deg) scale(0.5); opacity:0; }
+  50%  { opacity:1; }
+  100% { transform: translate(0,0) rotate(0deg) scale(1); opacity:1; }
+}
+.card-img {
+  width: 80px; margin: 0 6px;
+  border-radius: 6px; box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  transform-origin: bottom center;
+}
+.card-img.deal {
+  animation: deal 0.6s ease-out forwards;
+}
+.diler .card-img:nth-child(odd),
+.player .card-img:nth-child(even) { transform: rotate(-5deg); }
+.diler .card-img:nth-child(even),
+.player .card-img:nth-child(odd)  { transform: rotate(5deg); }
+
+/* גב קלף מוסתר */
+.card-back {
+  width: 80px; height: 120px;
+  background: url('https://deckofcardsapi.com/static/img/back.png') no-repeat center/cover;
+  margin: 0 6px; border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+}
+
+/* כפתורי פיקוד */
+.controls {
+  display: flex; justify-content: center; margin-top: 12px;
+}
+.controls button {
+  width: 100px; padding: 12px 0; margin: 0 10px;
+  border-radius: 50px;
+  background: radial-gradient(circle at 30% 30%, #ffd54f, #f9a825);
+  border: 2px solid #c17900;
+  color: #3e2723; font-size: 1rem; font-weight: 600;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3),
+              0 4px 6px rgba(0,0,0,0.5);
+  cursor: pointer; transition: transform 0.1s;
+}
+.controls button:hover:not(:disabled) { transform: scale(1.05); }
+.controls button:disabled {
+  background: #777; cursor: not-allowed;
+}
+
+/* הודעות תוצאה */
+.message {
+  position: absolute; bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6); padding: 10px 20px;
+  border-radius: 12px; font-size: 1.3rem;
+  color: #ffeb3b; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+/* ספינר טעינה */
+.spinner {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border: 8px solid rgba(255,255,255,0.3);
+  border-top: 8px solid #ffd54f;
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  animation: spin 1s linear infinite;
+  z-index: 10;
+}
+@keyframes spin {
+  0%   { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+
+/* מובייל */
+@media (max-width: 480px) {
+  .card-img, .card-back { width: 60px; }
+  .controls button  { width: 80px; padding: 8px 0; font-size: 0.9rem; }
+}
+/* קיים... */
+
+/* keyframes להזזת קלף מהפינה אל השולחן */
+@keyframes deal {
+  0%   { transform: translate(-200px,-200px) rotate(-30deg) scale(0.5); opacity:0; }
+  50%  { opacity:1; }
+  100% { transform: translate(0,0) rotate(0deg) scale(1); opacity:1; }
+}
+
+/* אנימציית deal לכל קלאס deal */
+.deal {
+  animation: deal 0.6s ease-out forwards;
+}
+
+/* אם רוצים מעט סטייל שונה לגב מוסתר, אפשר גם: */
+.card-back.deal {
+  /* רק הדגשה קטנה */
+  box-shadow: 0 0 15px rgba(255,255,0,0.7);
+}
+
+/* שאר ה־CSS נשאר אותו דבר... */

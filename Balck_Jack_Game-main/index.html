@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blackjack</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="con">
+    <div class="bord">
+      <!-- תוויות וסכומים -->
+      <div class="diler" data-label="DEALER">
+        <div class="sum" id="dealer-sum"></div>
+      </div>
+      <div class="player" data-label="PLAYER">
+        <div class="sum" id="player-sum"></div>
+      </div>
+
+      <!-- כפתורי פיקוד -->
+      <div class="controls">
+        <button class="hit">HIT</button>
+        <button class="stop">STOP</button>
+        <button class="restart" style="display:none;">NEW GAME</button>
+      </div>
+
+      <!-- הודעות ושגיאות -->
+      <div class="message"></div>
+
+      <!-- ספינר טעינה -->
+      <div id="spinner" class="spinner" style="display:none;"></div>
+
+      <!-- אפקטי סאונד -->
+      <audio id="snd-hit" src="sounds/card-flip.mp3"></audio>
+      <audio id="snd-reveal" src="sounds/card-place.mp3"></audio>
+      <audio id="bg-music" src="sounds/casino-bg.mp3" loop></audio>
+    </div>
+  </div>
+
+  <script type="module" src="init.js"></script>
+</body>
+</html>
